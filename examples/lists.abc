@@ -1,0 +1,17 @@
+set numbers to a list of 10 and 20 and 30
+
+say "original items"
+for each num in numbers do
+  say num
+done
+
+append 40 to numbers
+
+say "after appending"
+set size to length of numbers
+say "size is"
+say size
+
+set second to item 2 from numbers
+say "second element is"
+say second

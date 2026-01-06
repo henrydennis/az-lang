@@ -1,0 +1,14 @@
+say "using english numbers"
+
+set x to five
+say x
+
+set y to twenty three
+say y
+
+set big to one hundred forty two
+say big
+
+set result to five plus ten
+say "five plus ten equals"
+say result

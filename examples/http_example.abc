@@ -1,0 +1,23 @@
+say "Fetching data from API..."
+
+fetch from "https://jsonplaceholder.typicode.com/todos/1" into response
+
+set statusCode to status of response
+
+if statusCode equals 200 then
+    say "Success!"
+
+    parse body of response as json into data
+
+    set todoTitle to field "title" from data
+    set completed to field "completed" from data
+
+    say "Todo title:"
+    say todoTitle
+    say "Completed:"
+    say completed
+done
+otherwise
+    say "Request failed with status:"
+    say statusCode
+done

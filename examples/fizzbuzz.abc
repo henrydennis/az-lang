@@ -1,0 +1,13 @@
+set count to 1
+
+while count is less than 16 do
+  set quotient to count divided by 3
+  set check to quotient times 3
+  if check equals count then
+    say "fizz"
+  done
+  otherwise
+    say count
+  done
+  increase count by 1
+done

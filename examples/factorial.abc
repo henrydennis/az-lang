@@ -1,0 +1,13 @@
+to factorial with n
+  if n is less than 2 then
+    return 1
+  done
+  set prev to n minus 1
+  set sub to factorial with prev
+  set answer to n times sub
+  return answer
+done
+
+set final to factorial with 5
+say "the factorial result is"
+say final

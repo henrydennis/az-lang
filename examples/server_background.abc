@@ -1,0 +1,13 @@
+say "Starting background server test..."
+
+when request at "/hello" do
+    reply with "Hello from az-lang!"
+done
+
+when fetch at "/json" do
+    set data to a list of 1 and 2 and 3
+    reply with data as json
+done
+
+say "Server running on port 9000..."
+serve on 9000

@@ -1,0 +1,35 @@
+say "Starting API server..."
+
+set users to a list of "Alice" and "Bob" and "Charlie"
+
+when request at "/" do
+    reply with "Welcome to az-lang web server!"
+done
+
+when fetch at "/users" do
+    reply with users as json
+done
+
+when fetch at "/greet" using req do
+    set name to query "name" from req
+    if name equals null then
+        set name to "World"
+    done
+    set greeting to "Hello, "
+    reply with greeting plus name plus "!"
+done
+
+when send at "/users" using req do
+    parse body of req as json into data
+    set name to field "name" from data
+    append name to users
+    reply with users as json with status 201
+done
+
+say "Serving on port 8080..."
+say "Try: curl http://localhost:8080/"
+say "Try: curl http://localhost:8080/users"
+say "Try: curl http://localhost:8080/greet?name=Developer"
+say "Try: curl -X POST -d '{\"name\":\"David\"}' http://localhost:8080/users"
+
+serve on 8080

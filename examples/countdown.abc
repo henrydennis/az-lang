@@ -1,0 +1,8 @@
+set count to 10
+
+while count is greater than 0 do
+  say count
+  decrease count by 1
+done
+
+say "liftoff"

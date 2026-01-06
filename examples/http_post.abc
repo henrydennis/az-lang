@@ -1,0 +1,17 @@
+say "Creating new todo..."
+
+set newTodo to "{ \"title\": \"Learn ABC\", \"completed\": false, \"userId\": 1 }"
+
+send newTodo to "https://jsonplaceholder.typicode.com/todos" into response
+
+if status of response equals 201 then
+    say "Created successfully!"
+    parse body of response as json into created
+    set newId to field "id" from created
+    say "New todo ID:"
+    say newId
+done
+otherwise
+    say "Failed with status:"
+    say status of response
+done
