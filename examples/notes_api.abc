@@ -1,0 +1,43 @@
+say "=== Notes API ==="
+
+set notes to a list of "Welcome to Notes API"
+set noteCount to 1
+
+when fetch at "/" do
+    reply with "Notes API - Endpoints: GET /notes, POST /notes, GET /notes/count"
+done
+
+when fetch at "/notes" do
+    reply with notes as json
+done
+
+when send at "/notes" using req do
+    parse body of req as json into input
+    set note to field "note" from input
+
+    if note equals null then
+        reply with "note field is required" with status 400
+    done
+
+    append note to notes
+    increase noteCount by 1
+    reply with notes as json with status 201
+done
+
+when fetch at "/notes/count" do
+    reply with noteCount
+done
+
+say ""
+say "Endpoints:"
+say "  GET  /notes       - List all notes"
+say "  POST /notes       - Add note {note: text}"
+say "  GET  /notes/count - Count notes"
+say ""
+say "Examples:"
+say "  curl localhost:4000/notes"
+say "  curl -X POST -d '{\"note\":\"Hello World\"}' localhost:4000/notes"
+say ""
+say "Starting on port 4000..."
+
+serve on 4000

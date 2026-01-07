@@ -1,0 +1,38 @@
+say "=== API Aggregator ==="
+say "Fetches data from public APIs and serves locally"
+
+when request at "/" do
+    reply with "API Aggregator - Try: /fact, /uuid, /echo"
+done
+
+when fetch at "/fact" do
+    fetch from "https://uselessfacts.jsph.pl/api/v2/facts/random?language=en" into response
+    set responseBody to body of response
+    parse responseBody as json into data
+    set fact to field "text" from data
+    reply with fact
+done
+
+when fetch at "/uuid" do
+    fetch from "https://httpbin.org/uuid" into response
+    parse body of response as json into data
+    reply with data as json
+done
+
+when send at "/echo" using req do
+    set requestBody to body of req
+    set requestMethod to method of req
+    set result to a list of requestMethod and requestBody
+    reply with result as json
+done
+
+say ""
+say "Endpoints:"
+say "  GET  /      - Info"
+say "  GET  /fact  - Random fact"
+say "  GET  /uuid  - Generate UUID"
+say "  POST /echo  - Echo request"
+say ""
+say "Starting on port 3000..."
+
+serve on 3000

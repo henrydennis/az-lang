@@ -453,6 +453,8 @@ The `examples/` directory contains sample programs:
 | `http_post.abc` | HTTP POST request |
 | `server.abc` | Full REST API server |
 | `server_background.abc` | Background server |
+| `api_aggregator.abc` | API aggregator fetching from external services |
+| `notes_api.abc` | Simple notes CRUD API |
 
 ## Architecture
 
